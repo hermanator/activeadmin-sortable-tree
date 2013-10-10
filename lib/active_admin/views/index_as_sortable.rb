@@ -7,7 +7,7 @@ module ActiveAdmin
         @page_presenter = page_presenter
         @options = active_admin_config.dsl.sortable_options
         @collection = if @options[:tree]
-                        resource_class.send(@options[:roots_method])
+                        resource_class.send(@options[:roots_method]).select{ |r| collection.include?(r) }
                       else
                         collection
                       end
